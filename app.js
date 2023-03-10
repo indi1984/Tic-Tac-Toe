@@ -114,20 +114,22 @@ function reset() {
 
 //! WIP function to check for winning rows based on ticTacToeBoard.winningArray
 function checkRows() {
-  for (let j = 0; j < ticTacToeBoard.length - 1; j++) {
-    if (ticTacToeBoard.playerXArray === ticTacToeBoard.winningArray[j]) {
+  for (let i = 0; i <= 2 ; i++) {
+    if (ticTacToeBoard.playerXArray.includes(ticTacToeBoard.winningArray[i])) {
       console.log('PLAYER X WINS!');
-    } else if (ticTacToeBoard.playerYArray === ticTacToeBoard.winningArray[j]) {
+    } else if (ticTacToeBoard.playerYArray.includes(ticTacToeBoard.winningArray[i])) {
       console.log('PLAYER Y WINS!');
     };
   };
 };
+
+
 //! WIP function to check for winning columns based on ticTacToeBoard.winningArray
 function checkColumns() {
-  for (let i = 0; i < ticTacToeBoard.length - 1; i++) {
-    if (ticTacToeBoard.playerXArray === ticTacToeBoard.winningArray[i]) {
+  for (let i = 3; i <= 5; i++) {
+    if (ticTacToeBoard.playerXArray.includes(ticTacToeBoard.winningArray[i])) {
       console.log('PLAYER X WINS!');
-    } else if (ticTacToeBoard.playerYArray === ticTacToeBoard.winningArray[i]) {
+    } else if (ticTacToeBoard.playerYArray.includes(ticTacToeBoard.winningArray[i])) {
       console.log('PLAYER Y WINS!');
     };
   };
