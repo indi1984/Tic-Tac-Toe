@@ -1,3 +1,4 @@
+//* Declerations
 const info = document.querySelector('#info');
 const currentPlayer = document.querySelector('#player');
 const gameBoard = document.querySelector('#gameBoard');
@@ -5,6 +6,8 @@ const startButton = document.querySelector('#startButton');
 const tdCells = document.querySelectorAll('td');
 
 
+
+//* Initialize ticTacToeBoard object
 let ticTacToeBoard = {
   player: null,
   selectedCell: null,  //TODO Do not need
@@ -24,6 +27,8 @@ let ticTacToeBoard = {
     [[0,2], [1,1], [2,0]],
   ],
 };
+
+
 
 //! WIP function to check for winning rows based on ticTacToeBoard.winningArray
 function checkRows() {
@@ -47,10 +52,12 @@ function checkColumns() {
 };
 
 
+
 //* Assigning Event Listeners to the buttons and gameBoard
 startButton.addEventListener('click', startingPlayer);
 resetButton.addEventListener('click', reset);
 gameBoard.addEventListener('click', getCoords);
+
 
 
 //* Upon clicking the Start Game button, a random starting player (X or O)
@@ -69,6 +76,7 @@ let starter = Math.floor(Math.random() * 2);
 };
 
 
+
 //* Gets the coordinates of the gameBoard cell where the current player clicked.
 //* Picked string coords are then converted to a numeric array and passed to the 
 //* assignCoords function.   The clicked cell variable is also passed to the 
@@ -84,6 +92,7 @@ const cell = event.target;
 };
 
 
+
 //* Checks who the current player is and pushes the gameBoard cell value pair
 //* to the current players ticTacToeBoard X or O Array.  Then calls the 
 //* playerMove function to switch players
@@ -95,6 +104,7 @@ function assignCoords(coordinates, cell) {
   };
   playerMove(cell);
 };
+
 
 
 //* Changes the player span element to the Current Player (X or O),
