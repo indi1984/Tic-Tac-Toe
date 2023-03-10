@@ -32,10 +32,10 @@ let ticTacToeBoard = {
 
 //! WIP function to check for winning rows based on ticTacToeBoard.winningArray
 function checkRows() {
-  for (let row = 0; row < ticTacToeBoard.length - 1; row++) {
-    if (ticTacToeBoard.playerXArray === ticTacToeBoard.winningArray[row]) {
+  for (let j = 0; j < ticTacToeBoard.length - 1; j++) {
+    if (ticTacToeBoard.playerXArray === ticTacToeBoard.winningArray[j]) {
       console.log('PLAYER X WINS!');
-    } else if (ticTacToeBoard.playerYArray === ticTacToeBoard.winningArray[row]) {
+    } else if (ticTacToeBoard.playerYArray === ticTacToeBoard.winningArray[j]) {
       console.log('PLAYER Y WINS!');
     };
   };
@@ -94,9 +94,9 @@ const cell = event.target;
 
 
 
-//* Checks who the current player is and pushes the gameBoard cell value pair
-//* to the current players ticTacToeBoard X or O Array.  Then calls the 
-//* playerMove function to switch players
+//* Checks the current player and if cell is free then pushes the gameBoard cell
+//* value pair to the current players ticTacToeBoard X or O Array.  Then calls
+//* the playerMove function to switch players
 function assignCoords(coordinates, cell) {
   let isDisabled = cell.classList.contains('disabled');
   if (!isDisabled) {
