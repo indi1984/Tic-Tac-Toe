@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  padding: 5px;
+}
+
+#info {
+  margin-bottom: 25px;
+}
+
+#info > * {
+  margin-bottom: 15px;
+}
+
+#playerStatus {
+  margin-bottom: 30px;
+}
+
+#gameBoard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 300px;
+}
+
+td {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  font-size: 2em;
+  border: 1px solid black;
+}
+
