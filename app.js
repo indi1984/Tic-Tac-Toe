@@ -89,6 +89,7 @@ const cell = event.target;
     //ticTacToeBoard.selectedCell = event.target;  //TODO Do not need
     assignCoords(coordinates, cell);
   };
+  cell.classList.add('disabled');
 };
 
 
@@ -97,14 +98,17 @@ const cell = event.target;
 //* to the current players ticTacToeBoard X or O Array.  Then calls the 
 //* playerMove function to switch players
 function assignCoords(coordinates, cell) {
-  if (ticTacToeBoard.player === 'X' && ticTacToeBoard.player != '') {
-    ticTacToeBoard.playerXArray.push(coordinates);
-  } else if (ticTacToeBoard.player === 'O' && ticTacToeBoard.player != '') {
-    ticTacToeBoard.playerOArray.push(coordinates);
+  let isDisabled = cell.classList.contains('disabled');
+  if (!isDisabled) {
+    if (ticTacToeBoard.player === 'X' && ticTacToeBoard.player != '') {
+      ticTacToeBoard.playerXArray.push(coordinates);
+    } else if (ticTacToeBoard.player === 'O' && ticTacToeBoard.player != '') {
+      ticTacToeBoard.playerOArray.push(coordinates);
+    }
+    playerMove(cell);
   };
-  playerMove(cell);
 };
-
+  
 
 
 //* Changes the player span element to the Current Player (X or O),
@@ -123,10 +127,12 @@ function playerMove(cell) {
 };
 
 
+
 //* Resets the game to the default loaded state
 function reset() {
   for (let i = 0; i < tdCells.length; i++) {
     tdCells[i].innerHTML = '';
+    tdCells[i].classList.remove('disabled');
   };
   currentPlayer.innerHTML = "PRESS START GAME BUTTON";
   ticTacToeBoard.player = null;

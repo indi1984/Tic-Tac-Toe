@@ -39,3 +39,7 @@ td {
   border: 1px solid black;
 }
 
+.disabled {
+  cursor: not-allowed;
+}
+
