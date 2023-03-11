@@ -7,26 +7,43 @@ const tdCells = document.querySelectorAll('td');
 
 
 //* Initialize ticTacToeBoard object
+// let ticTacToeBoard = {
+//   player: null,
+//   selectedCell: null,  //TODO Do not need
+//   playerXArray: [],
+//   playerOArray: [],
+//   winningRows: [
+//     [0, 1, 2],
+//     [3, 4, 5],
+//     [6, 7, 8]
+//   ],
+//   winningColumns: [
+//     [0, 3, 6],
+//     [1, 4, 7],
+//     [2, 5, 8]
+//   ],
+//   winningDiags: [
+//     [0, 4, 8], 
+//     [2, 4, 6]
+//   ],
+// };
+
 let ticTacToeBoard = {
   player: null,
+  winningPlayer: false,
   selectedCell: null,  //TODO Do not need
   playerXArray: [],
   playerOArray: [],
-  winningRows: [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8]
-  ],
-  winningColumns: [
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8]
-  ],
-  winningDiags: [
-    [0, 4, 8], 
-    [2, 4, 6]
-  ],
+  winningRow1: [0, 1, 2],
+  winningRow2: [3, 4, 5],
+  winningRow3: [6, 7, 8],
+  winningColumn1: [0, 3, 6],
+  winningColumn2: [1, 4, 7],
+  winningColumn3: [2, 5, 8],
+  winningDiag1: [0, 4, 8], 
+  winningDiag2: [2, 4, 6],
 };
+
 
 
 //* Assigning Event Listeners to the buttons and gameBoard
@@ -114,16 +131,70 @@ function reset() {
 
 
 //! WIP function to check for winning columns based on ticTacToeBoard.winningArray
+
+// ticTacToeBoard.winningPlayer is false when all functions below are false, 
+// and true when any one of the below is true.   When one hits true, then check
+// current player and declare that player the winner.   This logic should be in 
+// a function called winningPlayer() and be called on every click event in that 
+// function.
+
 function checkColumns() {
-  for (let i = 0; i < ticTacToeBoard.winningColumns.length; i++) {
-    if (ticTacToeBoard.playerXArray[i].includes(ticTacToeBoard.winningColumns)) {
-      console.log('hi');
-    } else if (ticTacToeBoard.playerYArray[i].includes(ticTacToeBoard.winningColumns)) {
-      console.log('bye');
-    };
-  };
+  a = ticTacToeBoard.playerOArray;
+  b = ticTacToeBoard.playerXArray;
+  c = ticTacToeBoard.winningColumn1;
+  d = ticTacToeBoard.winningColumn2;
+  e = ticTacToeBoard.winningColumn3;
+  console.log(a, c, c.every(v => a.includes(v)));
+  console.log(a, d, d.every(v => a.includes(v)));
+  console.log(a, e, e.every(v => a.includes(v)));
+
+  console.log(b, c, c.every(v => b.includes(v)));
+  console.log(b, d, d.every(v => b.includes(v)));
+  console.log(b, e, e.every(v => b.includes(v)));
+};
+
+
+function checkRows() {
+  a = ticTacToeBoard.playerOArray;
+  b = ticTacToeBoard.playerXArray;
+  c = ticTacToeBoard.winningRow1;
+  d = ticTacToeBoard.winningRow2;
+  e = ticTacToeBoard.winningRow3;
+  console.log(a, c, 'O', c.every(v => a.includes(v)));
+  console.log(a, d, 'O', d.every(v => a.includes(v)));
+  console.log(a, e, 'O', e.every(v => a.includes(v)));
+
+  console.log(b, c, 'X', c.every(v => b.includes(v)));
+  console.log(b, d, 'X', d.every(v => b.includes(v)));
+  console.log(b, e, 'X', e.every(v => b.includes(v)));
 };
 
 
 
+
+function checkDiags() {
+  a = ticTacToeBoard.playerOArray;
+  b = ticTacToeBoard.playerXArray;
+  c = ticTacToeBoard.winningDiag1;
+  d = ticTacToeBoard.winningDiag2;
+  //O
+  let pA1 = (a, c, c.every(v => a.includes(v)));
+  console.log(a, d, d.every(v => a.includes(v)));
+  //X
+  console.log(b, c, c.every(v => b.includes(v)));
+  console.log(b, d, d.every(v => b.includes(v)));
+};
+
+
+function winningMove() {
+  checkDiags();
+  checkRows();
+  checkMoves();
+  const checkDiags = checkDiags();
+  const checkRows = checkRows();
+  const checkColumns = checkColumns();
+  if (checkDiags || checkRows || checkColumns) {
+    console.log('winner');
+  };
+};
 
