@@ -73,14 +73,19 @@ let starter = Math.floor(Math.random() * 2);
 //* assignCoords function.   The clicked cell variable is also passed to the 
 //* assignedCoords function
 function getCoords(event) {  
-const cell = event.target;
-  if (cell.tagName === "TD") {
-    let strCoords = cell.dataset.coords;
-    const coordinates = parseInt(strCoords);
-    //ticTacToeBoard.selectedCell = event.target;  //TODO Do not need
-    assignCoords(coordinates, cell);
+  const cell = event.target;
+  checkMoves();
+  if (ticTacToeBoard.winningPlayer === false) {
+    if (cell.tagName === "TD") {
+      let strCoords = cell.dataset.coords;
+      const coordinates = parseInt(strCoords);
+      //ticTacToeBoard.selectedCell = event.target;  //TODO Do not need
+      assignCoords(coordinates, cell);
+    };
+    cell.classList.add('disabled');
+  } else {
+    winningState();
   };
-  cell.classList.add('disabled');
 };
 
 
@@ -127,6 +132,7 @@ function reset() {
   ticTacToeBoard.selectedCell = null;
   ticTacToeBoard.playerOArray = [];
   ticTacToeBoard.playerXArray = [];
+  ticTacToeBoard.winningPlayer = false;
 };
 
 
@@ -137,64 +143,49 @@ function reset() {
 // current player and declare that player the winner.   This logic should be in 
 // a function called winningPlayer() and be called on every click event in that 
 // function.
-
-function checkColumns() {
-  a = ticTacToeBoard.playerOArray;
-  b = ticTacToeBoard.playerXArray;
-  c = ticTacToeBoard.winningColumn1;
-  d = ticTacToeBoard.winningColumn2;
-  e = ticTacToeBoard.winningColumn3;
-  console.log(a, c, c.every(v => a.includes(v)));
-  console.log(a, d, d.every(v => a.includes(v)));
-  console.log(a, e, e.every(v => a.includes(v)));
-
-  console.log(b, c, c.every(v => b.includes(v)));
-  console.log(b, d, d.every(v => b.includes(v)));
-  console.log(b, e, e.every(v => b.includes(v)));
-};
-
-
-function checkRows() {
-  a = ticTacToeBoard.playerOArray;
-  b = ticTacToeBoard.playerXArray;
-  c = ticTacToeBoard.winningRow1;
-  d = ticTacToeBoard.winningRow2;
-  e = ticTacToeBoard.winningRow3;
-  console.log(a, c, 'O', c.every(v => a.includes(v)));
-  console.log(a, d, 'O', d.every(v => a.includes(v)));
-  console.log(a, e, 'O', e.every(v => a.includes(v)));
-
-  console.log(b, c, 'X', c.every(v => b.includes(v)));
-  console.log(b, d, 'X', d.every(v => b.includes(v)));
-  console.log(b, e, 'X', e.every(v => b.includes(v)));
-};
-
-
-
-
-function checkDiags() {
+function checkMoves() {
   a = ticTacToeBoard.playerOArray;
   b = ticTacToeBoard.playerXArray;
   c = ticTacToeBoard.winningDiag1;
   d = ticTacToeBoard.winningDiag2;
+  e = ticTacToeBoard.winningRow1;
+  f = ticTacToeBoard.winningRow2;
+  g = ticTacToeBoard.winningRow3;
+  h = ticTacToeBoard.winningColumn1;
+  i = ticTacToeBoard.winningColumn2;
+  j = ticTacToeBoard.winningColumn3;
+
   //O
-  let pA1 = (a, c, c.every(v => a.includes(v)));
-  console.log(a, d, d.every(v => a.includes(v)));
+  let pO0 = c.every(v => a.includes(v));
+  let pO1 = d.every(v => a.includes(v));
+  let pO2 = e.every(v => a.includes(v));
+  let pO3 = f.every(v => a.includes(v));
+  let pO4 = g.every(v => a.includes(v)); 
+  let pO5 = h.every(v => a.includes(v)); 
+  let pO6 = i.every(v => a.includes(v)); 
+  let pO7 = j.every(v => a.includes(v));  
+
   //X
-  console.log(b, c, c.every(v => b.includes(v)));
-  console.log(b, d, d.every(v => b.includes(v)));
+  let pX0 = c.every(v => b.includes(v));
+  let pX1 = d.every(v => b.includes(v));
+  let pX2 = e.every(v => b.includes(v));
+  let pX3 = f.every(v => b.includes(v));
+  let pX4 = g.every(v => b.includes(v)); 
+  let pX5 = h.every(v => b.includes(v)); 
+  let pX6 = i.every(v => b.includes(v)); 
+  let pX7 = j.every(v => b.includes(v)); 
+
+  if (pO0 || pO1 || pO2 || pO3 || pO4 || pO5 || pO6 || pO7) {
+    ticTacToeBoard.winningPlayer = true;
+    return true;
+  } else if (pX0 || pX1 || pX2 || pX3 || pX4 || pX5 || pX6 || pX7) {
+    ticTacToeBoard.winningPlayer = true;
+    return true;
+  }
 };
 
 
-function winningMove() {
-  checkDiags();
-  checkRows();
-  checkMoves();
-  const checkDiags = checkDiags();
-  const checkRows = checkRows();
-  const checkColumns = checkColumns();
-  if (checkDiags || checkRows || checkColumns) {
-    console.log('winner');
-  };
+function winningState() {
+  console.log('WINNER');
 };
 
