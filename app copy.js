@@ -12,18 +12,19 @@ let ticTacToeBoard = {
   selectedCell: null,  //TODO Do not need
   playerXArray: [],
   playerOArray: [],
-  winningArray: [
-    // Rows
-    [[0,0], [0,1], [0,2]],
-    [[1,0], [1,1], [1,2]],
-    [[2,0], [2,1], [2,2]],
-    //Columns
-    [[0,0], [1,0], [2,0]],
-    [[0,1], [1,1], [2,1]],
-    [[0,2], [1,2], [2,2]],
-    //Diags
-    [[0,0], [1,1], [2,2]],
-    [[0,2], [1,1], [2,0]],
+  winningRows: [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8]
+  ],
+  winningColumns: [
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8]
+  ],
+  winningDiags: [
+    [0, 4, 8], 
+    [2, 4, 6]
   ],
 };
 
@@ -57,8 +58,8 @@ let starter = Math.floor(Math.random() * 2);
 function getCoords(event) {  
 const cell = event.target;
   if (cell.tagName === "TD") {
-    let strCoords = cell.dataset.coords.split(',');
-    const coordinates = strCoords.map((elem) => parseInt(elem));
+    let strCoords = cell.dataset.coords;
+    const coordinates = parseInt(strCoords);
     //ticTacToeBoard.selectedCell = event.target;  //TODO Do not need
     assignCoords(coordinates, cell);
   };
@@ -112,37 +113,17 @@ function reset() {
 };
 
 
-//! WIP function to check for winning rows based on ticTacToeBoard.winningArray
-function checkRows() {
-  for (let i = 0; i <= 2 ; i++) {
-    if (ticTacToeBoard.playerXArray.includes(ticTacToeBoard.winningArray[i])) {
-      console.log('PLAYER X WINS!');
-    } else if (ticTacToeBoard.playerYArray.includes(ticTacToeBoard.winningArray[i])) {
-      console.log('PLAYER Y WINS!');
-    };
-  };
-};
-
-
 //! WIP function to check for winning columns based on ticTacToeBoard.winningArray
 function checkColumns() {
-  for (let i = 3; i <= 5; i++) {
-    if (ticTacToeBoard.winningArray.includes(ticTacToeBoard.playerXArray)) {
-      console.log('PLAYER X WINS!');
-    } else if (ticTacToeBoard.winningArray.includes(ticTacToeBoard.playerYArray)) {
-      console.log('PLAYER Y WINS!');
+  for (let i = 0; i < ticTacToeBoard.winningColumns.length; i++) {
+    if (ticTacToeBoard.playerXArray[i].includes(ticTacToeBoard.winningColumns)) {
+      console.log('hi');
+    } else if (ticTacToeBoard.playerYArray[i].includes(ticTacToeBoard.winningColumns)) {
+      console.log('bye');
     };
   };
 };
 
 
-//! Found this solution when researching possible solutions.  Haven't learned this
-//! yet, so not sure exactly why it wouldn't be working
-function whoWins() {
-  ticTacToeBoard.winningArray.forEach(winningArray => {
-    const xWins = winningArray.every(state => ticTacToeBoard.playerXArray.includes(state));
-    const oWins = winningArray.every(state => ticTacToeBoard.playerOArray.includes(state));
 
-    console.log(oWins, xWins);
-  });
-};
+
