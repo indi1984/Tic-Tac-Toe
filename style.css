@@ -45,13 +45,11 @@ td {
 
 .whoWon {
   display: flex;
-  flex-basis: 0 1;
   justify-content: space-evenly;
-  font-size: 5em;
+  font-size: 4em;
   visibility: hidden;
 }
 
 .winID {
   font-size: 1.5em;
 }
-

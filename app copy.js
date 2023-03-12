@@ -135,8 +135,6 @@ function checkMoves() {
     ticTacToeBoard.winningPlayer = true;
     whoWon.style.visibility = 'visible';
     winID.innerHTML = ticTacToeBoard.player;
-    console.log(ticTacToeBoard.player);
-    console.log("WINNER O");
     return true;
   } else if (pX0 || pX1 || pX2 || pX3 || pX4 || pX5 || pX6 || pX7) {
     ticTacToeBoard.player = 'X';
@@ -144,8 +142,6 @@ function checkMoves() {
     ticTacToeBoard.winningPlayer = true;
     whoWon.style.visibility = 'visible';
     winID.innerHTML = ticTacToeBoard.player;
-    console.log(ticTacToeBoard.player);
-    console.log("WINNER X");
     return true;
   } else if (ticTacToeBoard.playerOArray.length >= 5 || ticTacToeBoard.playerXArray.length >= 5) {
     currentPlayer.innerHTML = '';  
