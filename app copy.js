@@ -5,6 +5,7 @@ const startButton = document.querySelector('#startButton');
 const tdCells = document.querySelectorAll('td');
 const whoWon = document.querySelector('.whoWon');
 const winID = document.querySelector('.winID');
+const span = document.querySelector('.hidden');
 
 
 let ticTacToeBoard = {
@@ -30,6 +31,7 @@ gameBoard.addEventListener('click', getCoords);
 
 function startingPlayer() {
 gameBoard.classList.remove('disabled');
+span.classList.remove('hidden');
 let starter = Math.floor(Math.random() * 2);
   if (starter === 1) {
     ticTacToeBoard.player = 'X';
@@ -96,6 +98,7 @@ function reset() {
   gameBoard.classList.add('disabled');
   whoWon.style.visibility = "hidden";
   winID.innerHTML = ''
+  span.classList.add('hidden');
 };
 
 

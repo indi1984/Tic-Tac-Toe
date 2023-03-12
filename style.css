@@ -39,8 +39,20 @@ td {
   border: 1px solid black;
 }
 
+span {
+  font-size: 1.25em;
+}
+
+#player {
+  font-size: 1.35em;
+}
+
 .disabled {
   cursor: not-allowed;
+}
+
+.hidden {
+  display: none;
 }
 
 .whoWon {
