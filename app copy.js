@@ -1,32 +1,9 @@
-//* Decelerations
 const info = document.querySelector('#info');
 const currentPlayer = document.querySelector('#player');
 const gameBoard = document.querySelector('#gameBoard');
 const startButton = document.querySelector('#startButton');
 const tdCells = document.querySelectorAll('td');
 
-
-//* Initialize ticTacToeBoard object
-// let ticTacToeBoard = {
-//   player: null,
-//   selectedCell: null,  //TODO Do not need
-//   playerXArray: [],
-//   playerOArray: [],
-//   winningRows: [
-//     [0, 1, 2],
-//     [3, 4, 5],
-//     [6, 7, 8]
-//   ],
-//   winningColumns: [
-//     [0, 3, 6],
-//     [1, 4, 7],
-//     [2, 5, 8]
-//   ],
-//   winningDiags: [
-//     [0, 4, 8], 
-//     [2, 4, 6]
-//   ],
-// };
 
 let ticTacToeBoard = {
   player: null,
@@ -43,7 +20,6 @@ let ticTacToeBoard = {
   winningDiag1: [0, 4, 8], 
   winningDiag2: [2, 4, 6],
 };
-
 
 
 //* Assigning Event Listeners to the buttons and gameBoard
@@ -83,8 +59,7 @@ function getCoords(event) {
       assignCoords(coordinates, cell);
     };
     cell.classList.add('disabled');
-  } else {
-    winningState();
+    checkMoves();
   };
 };
 
@@ -137,7 +112,6 @@ function reset() {
 
 
 //! WIP function to check for winning columns based on ticTacToeBoard.winningArray
-
 // ticTacToeBoard.winningPlayer is false when all functions below are false, 
 // and true when any one of the below is true.   When one hits true, then check
 // current player and declare that player the winner.   This logic should be in 
@@ -154,7 +128,6 @@ function checkMoves() {
   h = ticTacToeBoard.winningColumn1;
   i = ticTacToeBoard.winningColumn2;
   j = ticTacToeBoard.winningColumn3;
-
   //O
   let pO0 = c.every(v => a.includes(v));
   let pO1 = d.every(v => a.includes(v));
@@ -164,7 +137,6 @@ function checkMoves() {
   let pO5 = h.every(v => a.includes(v)); 
   let pO6 = i.every(v => a.includes(v)); 
   let pO7 = j.every(v => a.includes(v));  
-
   //X
   let pX0 = c.every(v => b.includes(v));
   let pX1 = d.every(v => b.includes(v));
@@ -177,15 +149,12 @@ function checkMoves() {
 
   if (pO0 || pO1 || pO2 || pO3 || pO4 || pO5 || pO6 || pO7) {
     ticTacToeBoard.winningPlayer = true;
+    console.log("WINNER");
     return true;
   } else if (pX0 || pX1 || pX2 || pX3 || pX4 || pX5 || pX6 || pX7) {
     ticTacToeBoard.winningPlayer = true;
+    console.log("WINNER2");
     return true;
   }
-};
-
-
-function winningState() {
-  console.log('WINNER');
 };
 
