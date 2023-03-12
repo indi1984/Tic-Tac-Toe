@@ -3,12 +3,13 @@ const currentPlayer = document.querySelector('#player');
 const gameBoard = document.querySelector('#gameBoard');
 const startButton = document.querySelector('#startButton');
 const tdCells = document.querySelectorAll('td');
+const whoWon = document.querySelector('.whoWon');
+const winID = document.querySelector('.winID');
 
 
 let ticTacToeBoard = {
   player: null,
   winningPlayer: false,
-  selectedCell: null,  //TODO Do not need
   playerXArray: [],
   playerOArray: [],
   winningRow1: [0, 1, 2],
@@ -22,16 +23,13 @@ let ticTacToeBoard = {
 };
 
 
-//* Assigning Event Listeners to the buttons and gameBoard
 startButton.addEventListener('click', startingPlayer);
 resetButton.addEventListener('click', reset);
 gameBoard.addEventListener('click', getCoords);
 
 
-//* Upon clicking the Start Game button, a random starting player (X or O)
-//* is chosen based on the Math.random function.   The ticTacToe.player value
-//* is assigned and the player span element is set to display the current player
 function startingPlayer() {
+gameBoard.classList.remove('disabled');
 let starter = Math.floor(Math.random() * 2);
   if (starter === 1) {
     ticTacToeBoard.player = 'X';
@@ -40,14 +38,9 @@ let starter = Math.floor(Math.random() * 2);
     ticTacToeBoard.player = 'O';
     currentPlayer.innerHTML = ticTacToeBoard.player;
   };
-  console.log(ticTacToeBoard.player);  //! CONSOLE LOG
 };
 
 
-//* Gets the coordinates of the gameBoard cell where the current player clicked.
-//* Picked string coords are then converted to a numeric array and passed to the 
-//* assignCoords function.   The clicked cell variable is also passed to the 
-//* assignedCoords function
 function getCoords(event) {  
   const cell = event.target;
   checkMoves();
@@ -55,18 +48,14 @@ function getCoords(event) {
     if (cell.tagName === "TD") {
       let strCoords = cell.dataset.coords;
       const coordinates = parseInt(strCoords);
-      //ticTacToeBoard.selectedCell = event.target;  //TODO Do not need
       assignCoords(coordinates, cell);
     };
-    cell.classList.add('disabled');
-    checkMoves();
+  cell.classList.add('disabled');
+  checkMoves();
   };
 };
 
 
-//* Checks the current player and if cell is free then pushes the gameBoard cell
-//* value pair to the current players ticTacToeBoard X or O Array.  Then calls
-//* the playerMove function to switch players
 function assignCoords(coordinates, cell) {
   let isDisabled = cell.classList.contains('disabled');
   if (!isDisabled) {
@@ -74,15 +63,12 @@ function assignCoords(coordinates, cell) {
       ticTacToeBoard.playerXArray.push(coordinates);
     } else if (ticTacToeBoard.player === 'O' && ticTacToeBoard.player != '') {
       ticTacToeBoard.playerOArray.push(coordinates);
-    }
-    playerMove(cell);
   };
+  playerMove(cell);
+  };  
 };
   
 
-//* Changes the player span element to the Current Player (X or O),
-//* flips the value in ticTacToeBoard.player, and sets the gameBoard cell
-//* to the current players' value
 function playerMove(cell) {
   if (ticTacToeBoard.player === "X") {
     cell.innerHTML = "X";
@@ -92,11 +78,10 @@ function playerMove(cell) {
     cell.innerHTML = "O";
     currentPlayer.innerHTML = "X";
     ticTacToeBoard.player = "X";
-  };
+  }; 
 };
 
 
-//* Resets the game to the default loaded state
 function reset() {
   for (let i = 0; i < tdCells.length; i++) {
     tdCells[i].innerHTML = '';
@@ -108,15 +93,10 @@ function reset() {
   ticTacToeBoard.playerOArray = [];
   ticTacToeBoard.playerXArray = [];
   ticTacToeBoard.winningPlayer = false;
+  gameBoard.classList.add('disabled');
 };
 
 
-//! WIP function to check for winning columns based on ticTacToeBoard.winningArray
-// ticTacToeBoard.winningPlayer is false when all functions below are false, 
-// and true when any one of the below is true.   When one hits true, then check
-// current player and declare that player the winner.   This logic should be in 
-// a function called winningPlayer() and be called on every click event in that 
-// function.
 function checkMoves() {
   a = ticTacToeBoard.playerOArray;
   b = ticTacToeBoard.playerXArray;
@@ -148,13 +128,27 @@ function checkMoves() {
   let pX7 = j.every(v => b.includes(v)); 
 
   if (pO0 || pO1 || pO2 || pO3 || pO4 || pO5 || pO6 || pO7) {
-    ticTacToeBoard.winningPlayer = true;
-    console.log("WINNER");
-    return true;
+      ticTacToeBoard.player = 'O';
+      currentPlayer.innerHTML = 'O';
+      ticTacToeBoard.winningPlayer = true;
+      whoWon.style.visibility = 'visible';
+      winID.innerHTML = ticTacToeBoard.player;
+      console.log(ticTacToeBoard.player);
+      console.log("WINNER O");
+      return true;
   } else if (pX0 || pX1 || pX2 || pX3 || pX4 || pX5 || pX6 || pX7) {
-    ticTacToeBoard.winningPlayer = true;
-    console.log("WINNER2");
-    return true;
-  }
+      ticTacToeBoard.player = 'X';
+      currentPlayer.innerHTML = 'X';
+      ticTacToeBoard.winningPlayer = true;
+      whoWon.style.visibility = 'visible';
+      winID.innerHTML = ticTacToeBoard.player;
+      console.log(ticTacToeBoard.player);
+      console.log("WINNER X");
+      return true;
+  } else {
+      currentPlayer.innerHTML = '';  
+      whoWon.style.visibility = "visible";
+      winID.innerHTML = 'DRAW!'
+  };
 };
 
