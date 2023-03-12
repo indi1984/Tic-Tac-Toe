@@ -94,6 +94,8 @@ function reset() {
   ticTacToeBoard.playerXArray = [];
   ticTacToeBoard.winningPlayer = false;
   gameBoard.classList.add('disabled');
+  whoWon.style.visibility = "hidden";
+  winID.innerHTML = ''
 };
 
 
@@ -128,27 +130,27 @@ function checkMoves() {
   let pX7 = j.every(v => b.includes(v)); 
 
   if (pO0 || pO1 || pO2 || pO3 || pO4 || pO5 || pO6 || pO7) {
-      ticTacToeBoard.player = 'O';
-      currentPlayer.innerHTML = 'O';
-      ticTacToeBoard.winningPlayer = true;
-      whoWon.style.visibility = 'visible';
-      winID.innerHTML = ticTacToeBoard.player;
-      console.log(ticTacToeBoard.player);
-      console.log("WINNER O");
-      return true;
+    ticTacToeBoard.player = 'O';
+    currentPlayer.innerHTML = 'O';
+    ticTacToeBoard.winningPlayer = true;
+    whoWon.style.visibility = 'visible';
+    winID.innerHTML = ticTacToeBoard.player;
+    console.log(ticTacToeBoard.player);
+    console.log("WINNER O");
+    return true;
   } else if (pX0 || pX1 || pX2 || pX3 || pX4 || pX5 || pX6 || pX7) {
-      ticTacToeBoard.player = 'X';
-      currentPlayer.innerHTML = 'X';
-      ticTacToeBoard.winningPlayer = true;
-      whoWon.style.visibility = 'visible';
-      winID.innerHTML = ticTacToeBoard.player;
-      console.log(ticTacToeBoard.player);
-      console.log("WINNER X");
-      return true;
-  } else {
-      currentPlayer.innerHTML = '';  
-      whoWon.style.visibility = "visible";
-      winID.innerHTML = 'DRAW!'
+    ticTacToeBoard.player = 'X';
+    currentPlayer.innerHTML = 'X';
+    ticTacToeBoard.winningPlayer = true;
+    whoWon.style.visibility = 'visible';
+    winID.innerHTML = ticTacToeBoard.player;
+    console.log(ticTacToeBoard.player);
+    console.log("WINNER X");
+    return true;
+  } else if (ticTacToeBoard.playerOArray.length >= 5 || ticTacToeBoard.playerXArray.length >= 5) {
+    currentPlayer.innerHTML = '';  
+    whoWon.style.visibility = "visible";
+    winID.innerHTML = 'A DRAW!'
   };
 };
 
