@@ -44,6 +44,7 @@ gameBoard.addEventListener('click', getCoords);
 function startingPlayer() {
 gameBoard.classList.remove('disabled');
 startButton.classList.remove('activeButton');
+startButton.disabled = true;
 span.classList.remove('hidden');
 let starter = Math.floor(Math.random() * 2);
   if (starter === 1) {
@@ -114,6 +115,7 @@ function reset() {
   span.classList.add('hidden');
   resetButton.classList.remove('activeButton');
   startButton.classList.add('activeButton');
+  startButton.disabled = false;
 };
 
 
