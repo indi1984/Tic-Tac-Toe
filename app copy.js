@@ -152,7 +152,7 @@ function checkMoves() {
       ticTacToeBoard.winningPlayer = true;
       whoWon.style.visibility = 'visible';
       winID.innerHTML = ticTacToeBoard.player;
-      checkWin();
+      winVisual();
   };
 
 
@@ -164,7 +164,7 @@ function checkMoves() {
       ticTacToeBoard.winningPlayer = true;
       whoWon.style.visibility = 'visible';
       winID.innerHTML = ticTacToeBoard.player;
-      checkWin()
+      winVisual();
   };
 
   if (pO0) {
@@ -240,7 +240,7 @@ function checkMoves() {
 };
 
 
-function checkWin() {
+function winVisual() {
   for (let i = 0; i < ticTacToeBoard.winVisual.length; i++) {  
     if (document.getElementById(ticTacToeBoard.winVisual[i][0]).innerHTML === ticTacToeBoard.player &&
       document.getElementById(ticTacToeBoard.winVisual[i][1]).innerHTML === ticTacToeBoard.player  &&
