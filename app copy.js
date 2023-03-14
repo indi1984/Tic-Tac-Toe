@@ -2,6 +2,7 @@ const info = document.querySelector('#info');
 const currentPlayer = document.querySelector('#player');
 const gameBoard = document.querySelector('#gameBoard');
 const startButton = document.querySelector('#startButton');
+const resetButton = document.querySelector('#resetButton');
 const tdCells = document.querySelectorAll('td');
 const whoWon = document.querySelector('.whoWon');
 const winID = document.querySelector('.winID');
@@ -42,6 +43,7 @@ gameBoard.addEventListener('click', getCoords);
 
 function startingPlayer() {
 gameBoard.classList.remove('disabled');
+startButton.classList.remove('activeButton');
 span.classList.remove('hidden');
 let starter = Math.floor(Math.random() * 2);
   if (starter === 1) {
@@ -110,6 +112,8 @@ function reset() {
   whoWon.style.visibility = "hidden";
   winID.innerHTML = ''
   span.classList.add('hidden');
+  resetButton.classList.remove('activeButton');
+  startButton.classList.add('activeButton');
 };
 
 
@@ -236,6 +240,7 @@ function checkMoves() {
       currentPlayer.innerHTML = 'PRESS RESET BUTTON TO START A NEW GAME';
       whoWon.style.visibility = "visible";
       winID.innerHTML = 'A DRAW!'
+      resetButton.classList.add('activeButton');
   };
 };
 
@@ -249,6 +254,7 @@ function winVisual() {
       document.getElementById(ticTacToeBoard.winVisual[i][0]).classList.add('winCell');
       document.getElementById(ticTacToeBoard.winVisual[i][1]).classList.add('winCell');
       document.getElementById(ticTacToeBoard.winVisual[i][2]).classList.add('winCell');
+      resetButton.classList.add('activeButton');
       };
   };
 };

@@ -13,29 +13,35 @@
 }
 
 #info {
-  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 45px;
 }
 
-#info > * {
-  margin-bottom: 15px;
+h1 {
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: 50px;
 }
 
 #playerStatus {
   margin-bottom: 35px;
+  font-size: 2em;
+  text-align: center;
 }
 
 #gameBoard {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 300px;
+  width: 600px;
 }
 
 td {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   text-align: center;
-  font-size: 2em;
+  font-size: 5em;
   border: 1px solid black;
 }
 
@@ -70,5 +76,20 @@ span {
 .winCell {
   background-color: lightgreen;
   color: green;
-  font-size: 5.5em;
+  font-size: 10em;
+}
+
+
+.button {
+border-radius: 60px;
+font-size: 25px;
+padding: 15px;
+}
+
+.activeButton {
+  border-radius: 60px;
+  font-size: 25px;
+  padding: 15px;
+  background-color: green;
+  box-shadow: 0 0 20px yellow;
 }
