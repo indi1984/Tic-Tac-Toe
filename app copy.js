@@ -6,6 +6,7 @@ const tdCells = document.querySelectorAll('td');
 const whoWon = document.querySelector('.whoWon');
 const winID = document.querySelector('.winID');
 const span = document.querySelector('.hidden');
+const winTxt = document.querySelector('#winTxt');
 
 
 let ticTacToeBoard = {
@@ -21,6 +22,16 @@ let ticTacToeBoard = {
   winningColumn3: [2, 5, 8],
   winningDiag1: [0, 4, 8], 
   winningDiag2: [2, 4, 6],
+  winVisual: [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ],
 };
 
 
@@ -45,7 +56,6 @@ let starter = Math.floor(Math.random() * 2);
 
 function getCoords(event) {  
   const cell = event.target;
-  checkMoves();
   if (ticTacToeBoard.winningPlayer === false) {
     if (cell.tagName === "TD") {
       let strCoords = cell.dataset.coords;
@@ -80,7 +90,7 @@ function playerMove(cell) {
     cell.innerHTML = "O";
     currentPlayer.innerHTML = "X";
     ticTacToeBoard.player = "X";
-  }; 
+  };
 };
 
 
@@ -88,6 +98,7 @@ function reset() {
   for (let i = 0; i < tdCells.length; i++) {
     tdCells[i].innerHTML = '';
     tdCells[i].classList.remove('disabled');
+    tdCells[i].classList.remove('winCell');
   };
   currentPlayer.innerHTML = "PRESS START GAME BUTTON";
   ticTacToeBoard.player = null;
@@ -132,24 +143,113 @@ function checkMoves() {
   let pX6 = i.every(v => b.includes(v)); 
   let pX7 = j.every(v => b.includes(v)); 
 
-  if (pO0 || pO1 || pO2 || pO3 || pO4 || pO5 || pO6 || pO7) {
-    ticTacToeBoard.player = 'O';
-    currentPlayer.innerHTML = 'O';
-    ticTacToeBoard.winningPlayer = true;
-    whoWon.style.visibility = 'visible';
-    winID.innerHTML = ticTacToeBoard.player;
-    return true;
-  } else if (pX0 || pX1 || pX2 || pX3 || pX4 || pX5 || pX6 || pX7) {
-    ticTacToeBoard.player = 'X';
-    currentPlayer.innerHTML = 'X';
-    ticTacToeBoard.winningPlayer = true;
-    whoWon.style.visibility = 'visible';
-    winID.innerHTML = ticTacToeBoard.player;
-    return true;
+
+  function playerOWins() {
+      ticTacToeBoard.player = 'O';
+      span.classList.add('hidden');
+      winTxt.classList.remove('hidden');
+      currentPlayer.innerHTML = 'PRESS RESET BUTTON TO START A NEW GAME';
+      ticTacToeBoard.winningPlayer = true;
+      whoWon.style.visibility = 'visible';
+      winID.innerHTML = ticTacToeBoard.player;
+      checkWin();
+  };
+
+
+  function playerXWins() {
+      ticTacToeBoard.player = 'X';
+      span.classList.add('hidden');
+      winTxt.classList.remove('hidden');
+      currentPlayer.innerHTML = 'PRESS RESET BUTTON TO START A NEW GAME';
+      ticTacToeBoard.winningPlayer = true;
+      whoWon.style.visibility = 'visible';
+      winID.innerHTML = ticTacToeBoard.player;
+      checkWin()
+  };
+
+  if (pO0) {
+      playerOWins();
+      return console.log('pO0');
+
+  } else if (pO1) {
+      playerOWins();
+      return console.log('pO1');
+
+  } else if (pO2) {
+      playerOWins();
+       return console.log('pO2');
+
+  } else if (pO3) {
+      playerOWins();
+      return console.log('pO3');
+
+  } else if (pO4) {
+      playerOWins();
+      return console.log('pO4');
+
+  } else if (pO5) {
+      playerOWins();
+      return console.log('pO5');
+
+  } else if (pO6) {
+      playerOWins();
+      return console.log('pO6');
+
+  } else if (pO7) {
+      playerOWins();
+      return console.log('pO7');
+
+  } else if (pX0) {
+      playerXWins();
+      return console.log('pX0');
+
+  } else if (pX1) {
+      playerXWins();
+      return console.log('pX1');
+
+  } else if (pX2) {
+      playerXWins();
+      return console.log('pX2');
+
+  } else if (pX3) {
+      playerXWins();
+      return console.log('pX3');
+
+  } else if (pX4) {
+      playerXWins();
+      return console.log('pX4');
+
+  } else if (pX5) {
+      playerXWins();
+      return console.log('pX5');
+
+  } else if (pX6) {
+      playerXWins();
+      return console.log('pX6');
+
+  } else if (pX7) {
+      playerXWins();
+      return console.log('pX7');
+
   } else if (ticTacToeBoard.playerOArray.length >= 5 || ticTacToeBoard.playerXArray.length >= 5) {
-    currentPlayer.innerHTML = '';  
-    whoWon.style.visibility = "visible";
-    winID.innerHTML = 'A DRAW!'
+      span.classList.add('hidden');
+      currentPlayer.innerHTML = 'PRESS RESET BUTTON TO START A NEW GAME';
+      whoWon.style.visibility = "visible";
+      winID.innerHTML = 'A DRAW!'
+  };
+};
+
+
+function checkWin() {
+  for (let i = 0; i < ticTacToeBoard.winVisual.length; i++) {  
+    if (document.getElementById(ticTacToeBoard.winVisual[i][0]).innerHTML === ticTacToeBoard.player &&
+      document.getElementById(ticTacToeBoard.winVisual[i][1]).innerHTML === ticTacToeBoard.player  &&
+      document.getElementById(ticTacToeBoard.winVisual[i][2]).innerHTML === ticTacToeBoard.player) { 
+      ticTacToeBoard.winningPlayer = true;
+      document.getElementById(ticTacToeBoard.winVisual[i][0]).classList.add('winCell');
+      document.getElementById(ticTacToeBoard.winVisual[i][1]).classList.add('winCell');
+      document.getElementById(ticTacToeBoard.winVisual[i][2]).classList.add('winCell');
+      };
   };
 };
 
