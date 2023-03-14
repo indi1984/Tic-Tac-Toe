@@ -21,13 +21,15 @@
 h1 {
   margin-bottom: 25px;
   text-align: center;
-  font-size: 50px;
+  font-size: 80px;
+  font-family: 'Play', sans-serif;
 }
 
 #playerStatus {
   margin-bottom: 35px;
-  font-size: 2em;
+  font-size: 1.5em;
   text-align: center;
+  font-family: 'Play', sans-serif;
 }
 
 #gameBoard {
@@ -61,6 +63,10 @@ span {
   display: none;
 }
 
+#winTxt {
+  font-family: 'Play', sans-serif;
+}
+
 .whoWon {
   display: flex;
   justify-content: space-evenly;
@@ -71,6 +77,7 @@ span {
 .winID {
   font-size: 1.5em;
   color: green;
+  font-family: sans-serif;
 }
 
 .winCell {
@@ -81,9 +88,16 @@ span {
 
 
 .button {
-border-radius: 60px;
-font-size: 25px;
-padding: 15px;
+  border-radius: 60px;
+  font-size: 25px;
+  padding: 15px;
+}
+
+.button:click {
+  background-color: darkgray;
+  border-radius: 60px;
+  font-size: 25px;
+  padding: 15px;
 }
 
 .activeButton {
@@ -91,5 +105,13 @@ padding: 15px;
   font-size: 25px;
   padding: 15px;
   background-color: green;
+  box-shadow: 0 0 20px yellow;
+}
+
+.activeButton:click {
+  border-radius: 60px;
+  font-size: 25px;
+  padding: 15px;
+  background-color: lightgreen;
   box-shadow: 0 0 20px yellow;
 }
