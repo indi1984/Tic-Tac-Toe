@@ -12,18 +12,37 @@
     <title>Tic-Tac-Toe</title>
   </head>
 
-  <body> 
+  <body>
     <section class="container">
+
       <div id="info">
         <h1>Tic-Tac-Toe</h1>
-        <button id="startButton" class="activeButton button">Start Game</button>
+
+        <div id="namesForm">
+          <form action="">
+            <label for="playerXName">Player One:</label>
+            <input type="text" id="playerXName" name="playerXName">
+            <label for="playerOName">Player Two:</label>
+            <input type="text" id="playerOName" name="playerOName">
+            <input type="submit" id="submit-form" class="hidden">
+          </form>
+        </div>
+
         <br />
         <br />
-        <button id="resetButton" class="resetButton button">Reset</button>
+
+        <div id="buttonDiv">
+          <button for="submit-form" id="startButton" class="activeButton button">Start</button>
+          <br />
+          <button id="resetButton" class="resetButton button">Reset</button>
+        </div>
+        
       </div>
+
       <div id="playerStatus">
-        <span class="hidden">Current Player: </span><span id="player">PRESS START GAME BUTTON</span>
+        <span class="hidden" id="playerSymbol">Current Player: </span><span id="player">ENTER YOUR NAMES AND PRESS START</span>
       </div>
+
       <table class="disabled" id="gameBoard" cellspacing="0">
         <tr id="rowOne" class="row">
           <td data-coords=0 id='0'></td>

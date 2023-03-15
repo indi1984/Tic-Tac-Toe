@@ -7,11 +7,18 @@ const tdCells = document.querySelectorAll('td');
 const whoWon = document.querySelector('.whoWon');
 const winID = document.querySelector('.winID');
 const span = document.querySelector('.hidden');
+const playerSymbol = document.querySelector('#playerSymbol');
 const winTxt = document.querySelector('#winTxt');
+const namesForm = document.querySelector('#namesForm');
+const form = document.querySelector('form');
+const playerXName = document.querySelector('#playerXName');
+const playerOName = document.querySelector('#playerOName');
 
 
 let ticTacToeBoard = {
   player: null,
+  playerXName: '',
+  playerOName: '',
   winningPlayer: false,
   playerXArray: [],
   playerOArray: [],
@@ -41,19 +48,32 @@ resetButton.addEventListener('click', reset);
 gameBoard.addEventListener('click', getCoords);
 
 
-function startingPlayer() {
+function startingPlayer(event) {
+playerSymbol.classList.remove('hidden');
+event.preventDefault();
 gameBoard.classList.remove('disabled');
 startButton.classList.remove('activeButton');
 startButton.disabled = true;
-span.classList.remove('hidden');
+namesForm.classList.add('hidden');
 let starter = Math.floor(Math.random() * 2);
+ticTacToeBoard.playerXName = playerXName.value;
+ticTacToeBoard.playerOName = playerOName.value;
   if (starter === 1) {
     ticTacToeBoard.player = 'X';
-    currentPlayer.innerHTML = ticTacToeBoard.player;
+    if (ticTacToeBoard.playerXName) {
+      currentPlayer.innerHTML = `${ticTacToeBoard.playerXName} | X`;
+    } else {
+      currentPlayer.innerHTML = 'X'
+    };
   } else {
     ticTacToeBoard.player = 'O';
-    currentPlayer.innerHTML = ticTacToeBoard.player;
+    if (ticTacToeBoard.playerOName) {
+      currentPlayer.innerHTML = `${ticTacToeBoard.playerOName} | O`;
+    } else {
+      currentPlayer.innerHTML = 'O'
+    };
   };
+
 };
 
 
@@ -85,14 +105,22 @@ function assignCoords(coordinates, cell) {
   
 
 function playerMove(cell) {
-  if (ticTacToeBoard.player === "X") {
+  if (ticTacToeBoard.player === 'X') {
     cell.innerHTML = "X";
-    currentPlayer.innerHTML = "O";
-    ticTacToeBoard.player = "O";
-  } else if (ticTacToeBoard.player === "O") {
-    cell.innerHTML = "O";
-    currentPlayer.innerHTML = "X";
-    ticTacToeBoard.player = "X";
+    ticTacToeBoard.player = 'O';
+      if (ticTacToeBoard.playerOName) {
+        currentPlayer.innerHTML = `${ticTacToeBoard.playerOName} | O`;
+      } else {
+        currentPlayer.innerHTML = 'O';  
+      };
+  } else if (ticTacToeBoard.player === 'O') {
+    cell.innerHTML = 'O';
+    ticTacToeBoard.player = 'X';
+      if (ticTacToeBoard.playerXName) {
+        currentPlayer.innerHTML = `${ticTacToeBoard.playerXName} | X`;
+      } else {
+        currentPlayer.innerHTML = 'X';   
+      }; 
   };
 };
 
@@ -103,7 +131,7 @@ function reset() {
     tdCells[i].classList.remove('disabled');
     tdCells[i].classList.remove('winCell');
   };
-  currentPlayer.innerHTML = "PRESS START GAME BUTTON";
+  currentPlayer.innerHTML = "ENTER YOUR NAMES AND PRESS START";
   ticTacToeBoard.player = null;
   ticTacToeBoard.selectedCell = null;
   ticTacToeBoard.playerOArray = [];
@@ -116,6 +144,9 @@ function reset() {
   resetButton.classList.remove('activeButton');
   startButton.classList.add('activeButton');
   startButton.disabled = false;
+  namesForm.classList.remove('hidden');
+  playerOName.value = '';
+  playerXName.value = '';
 };
 
 
@@ -157,7 +188,11 @@ function checkMoves() {
       currentPlayer.innerHTML = 'PRESS RESET BUTTON TO START A NEW GAME';
       ticTacToeBoard.winningPlayer = true;
       whoWon.style.visibility = 'visible';
-      winID.innerHTML = ticTacToeBoard.player;
+        if (ticTacToeBoard.playerOName) {
+        winID.innerHTML = ticTacToeBoard.playerOName;
+        } else {
+          winID.innerHTML = 'O';
+        }
       winVisual();
   };
 
@@ -169,7 +204,11 @@ function checkMoves() {
       currentPlayer.innerHTML = 'PRESS RESET BUTTON TO START A NEW GAME';
       ticTacToeBoard.winningPlayer = true;
       whoWon.style.visibility = 'visible';
-      winID.innerHTML = ticTacToeBoard.player;
+        if (ticTacToeBoard.playerXName) {
+        winID.innerHTML = ticTacToeBoard.playerXName;
+        } else {
+        winID.innerHTML = 'X';
+        };
       winVisual();
   };
 
