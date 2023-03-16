@@ -278,8 +278,8 @@ function checkMoves() {
       return console.log('pX7');
 
   } else if (ticTacToeBoard.playerOArray.length >= 5 || ticTacToeBoard.playerXArray.length >= 5) {
-      span.classList.add('hidden');
-      currentPlayer.innerHTML = 'PRESS RESET BUTTON TO START A NEW GAME';
+      playerSymbol.classList.add('hidden');
+      currentPlayer.innerHTML = 'PRESS RESET TO START A NEW GAME';
       whoWon.style.visibility = "visible";
       winID.innerHTML = 'A DRAW!'
       resetButton.classList.add('activeButton');
