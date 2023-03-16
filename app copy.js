@@ -186,7 +186,7 @@ function checkMoves() {
       ticTacToeBoard.player = 'O';
       playerSymbol.classList.add('hidden');
       winTxt.classList.remove('hidden');
-      currentPlayer.innerHTML = 'PRESS RESET BUTTON TO START A NEW GAME';
+      currentPlayer.innerHTML = 'PRESS RESET TO START A NEW GAME';
       ticTacToeBoard.winningPlayer = true;
       whoWon.style.visibility = 'visible';
         if (ticTacToeBoard.playerOName) {
@@ -202,7 +202,7 @@ function checkMoves() {
       ticTacToeBoard.player = 'X';
       playerSymbol.classList.add('hidden');
       winTxt.classList.remove('hidden');
-      currentPlayer.innerHTML = 'PRESS RESET BUTTON TO START A NEW GAME';
+      currentPlayer.innerHTML = 'PRESS RESET TO START A NEW GAME';
       ticTacToeBoard.winningPlayer = true;
       whoWon.style.visibility = 'visible';
         if (ticTacToeBoard.playerXName) {
