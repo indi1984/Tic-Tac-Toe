@@ -140,3 +140,13 @@ span {
 .activeButton:hover {
   background-color: darkgreen;
 }
+
+.resetButton:active {
+  background-color: grey;
+  box-shadow: 5px 5px 15px -3px grey;
+}
+
+.activeButton:active {
+  background-color: darkgreen;
+  box-shadow: 5px 5px 15px -3px green;
+}
