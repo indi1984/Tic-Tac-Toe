@@ -53,6 +53,7 @@ playerSymbol.classList.remove('hidden');
 event.preventDefault();
 gameBoard.classList.remove('disabled');
 startButton.classList.remove('activeButton');
+resetButton.classList.add('activeButton');
 startButton.disabled = true;
 namesForm.classList.add('hidden');
 let starter = Math.floor(Math.random() * 2);
@@ -131,7 +132,7 @@ function reset() {
     tdCells[i].classList.remove('disabled');
     tdCells[i].classList.remove('winCell');
   };
-  currentPlayer.innerHTML = "ENTER YOUR NAMES AND PRESS START";
+  currentPlayer.innerHTML = "ENTER PLAYER NAMES AND PRESS START";
   ticTacToeBoard.player = null;
   ticTacToeBoard.selectedCell = null;
   ticTacToeBoard.playerOArray = [];
@@ -140,7 +141,7 @@ function reset() {
   gameBoard.classList.add('disabled');
   whoWon.style.visibility = "hidden";
   winID.innerHTML = ''
-  span.classList.add('hidden');
+  playerSymbol.classList.add('hidden');
   resetButton.classList.remove('activeButton');
   startButton.classList.add('activeButton');
   startButton.disabled = false;
@@ -183,7 +184,7 @@ function checkMoves() {
 
   function playerOWins() {
       ticTacToeBoard.player = 'O';
-      span.classList.add('hidden');
+      playerSymbol.classList.add('hidden');
       winTxt.classList.remove('hidden');
       currentPlayer.innerHTML = 'PRESS RESET BUTTON TO START A NEW GAME';
       ticTacToeBoard.winningPlayer = true;
@@ -199,7 +200,7 @@ function checkMoves() {
 
   function playerXWins() {
       ticTacToeBoard.player = 'X';
-      span.classList.add('hidden');
+      playerSymbol.classList.add('hidden');
       winTxt.classList.remove('hidden');
       currentPlayer.innerHTML = 'PRESS RESET BUTTON TO START A NEW GAME';
       ticTacToeBoard.winningPlayer = true;
