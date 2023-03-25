@@ -1,4 +1,3 @@
-const info = document.querySelector("#info");
 const currentPlayer = document.querySelector("#player");
 const gameBoard = document.querySelector("#gameBoard");
 const startButton = document.querySelector("#startButton");
@@ -6,11 +5,9 @@ const resetButton = document.querySelector("#resetButton");
 const tdCells = document.querySelectorAll("td");
 const whoWon = document.querySelector(".whoWon");
 const winID = document.querySelector(".winID");
-const span = document.querySelector(".hidden");
 const playerSymbol = document.querySelector("#playerSymbol");
 const winTxt = document.querySelector("#winTxt");
 const namesForm = document.querySelector("#namesForm");
-const form = document.querySelector("form");
 const playerXName = document.querySelector("#playerXName");
 const playerOName = document.querySelector("#playerOName");
 
@@ -143,34 +140,34 @@ function reset() {
 }
 
 function checkMoves() {
-  a = ticTacToeBoard.playerOArray;
-  b = ticTacToeBoard.playerXArray;
-  c = ticTacToeBoard.winningDiag1;
-  d = ticTacToeBoard.winningDiag2;
-  e = ticTacToeBoard.winningRow1;
-  f = ticTacToeBoard.winningRow2;
-  g = ticTacToeBoard.winningRow3;
-  h = ticTacToeBoard.winningColumn1;
-  i = ticTacToeBoard.winningColumn2;
-  j = ticTacToeBoard.winningColumn3;
+  const a = ticTacToeBoard.playerOArray;
+  const b = ticTacToeBoard.playerXArray;
+  const c = ticTacToeBoard.winningDiag1;
+  const d = ticTacToeBoard.winningDiag2;
+  const e = ticTacToeBoard.winningRow1;
+  const f = ticTacToeBoard.winningRow2;
+  const g = ticTacToeBoard.winningRow3;
+  const h = ticTacToeBoard.winningColumn1;
+  const i = ticTacToeBoard.winningColumn2;
+  const j = ticTacToeBoard.winningColumn3;
   //O
-  let pO0 = c.every((v) => a.includes(v));
-  let pO1 = d.every((v) => a.includes(v));
-  let pO2 = e.every((v) => a.includes(v));
-  let pO3 = f.every((v) => a.includes(v));
-  let pO4 = g.every((v) => a.includes(v));
-  let pO5 = h.every((v) => a.includes(v));
-  let pO6 = i.every((v) => a.includes(v));
-  let pO7 = j.every((v) => a.includes(v));
+  const pO0 = c.every((v) => a.includes(v));
+  const pO1 = d.every((v) => a.includes(v));
+  const pO2 = e.every((v) => a.includes(v));
+  const pO3 = f.every((v) => a.includes(v));
+  const pO4 = g.every((v) => a.includes(v));
+  const pO5 = h.every((v) => a.includes(v));
+  const pO6 = i.every((v) => a.includes(v));
+  const pO7 = j.every((v) => a.includes(v));
   //X
-  let pX0 = c.every((v) => b.includes(v));
-  let pX1 = d.every((v) => b.includes(v));
-  let pX2 = e.every((v) => b.includes(v));
-  let pX3 = f.every((v) => b.includes(v));
-  let pX4 = g.every((v) => b.includes(v));
-  let pX5 = h.every((v) => b.includes(v));
-  let pX6 = i.every((v) => b.includes(v));
-  let pX7 = j.every((v) => b.includes(v));
+  const pX0 = c.every((v) => b.includes(v));
+  const pX1 = d.every((v) => b.includes(v));
+  const pX2 = e.every((v) => b.includes(v));
+  const pX3 = f.every((v) => b.includes(v));
+  const pX4 = g.every((v) => b.includes(v));
+  const pX5 = h.every((v) => b.includes(v));
+  const pX6 = i.every((v) => b.includes(v));
+  const pX7 = j.every((v) => b.includes(v));
 
   function playerOWins() {
     ticTacToeBoard.player = "O";
